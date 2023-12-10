@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+service ProductService {
+  rpc GetProduct(ProductRequest) returns (Product) {};
+  rpc TestConnection (SimpleMessage) returns (SimpleMessage) {};
+  rpc CreateProduct(stream Product) returns (SimpleMessage) {};
+  rpc GetUsers (google.protobuf.Empty) returns (stream Product) {};
+  rpc DeleteProduct(ProductRequest) returns (SimpleMessage) {};
+
+
+}
+message SimpleMessage {
+  string message = 1;
+}
+
+message ProductRequest {
+  int32 id = 1;
+}
+
+message Product {
+  string name = 1;
+  string alias = 2;
+}
