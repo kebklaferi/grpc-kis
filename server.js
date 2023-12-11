@@ -1,6 +1,10 @@
 const PROTO_PATH = __dirname + '/details.proto';
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
+const {
+    getProduct, createProduct, deleteProduct, updateProduct, getProducts,
+    getIngredient, createIngredient, deleteIngredient, updateIngredient, getIngredients
+} = require("/service-impl");
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     keepCase: true,
@@ -16,13 +20,22 @@ const product = protoDescriptor.ProductService;
 function getServer() {
     const server = new grpc.Server();
     server.addService(product.service, {
-        GetProduct: (req, res) => {
-            console.log(req, res)
-        },
         TestConnection: (req, res) => {
             console.log(req.request);
-            res(null, {message: "Connection is working!"});
-        }
+            res(null, {
+                message: "Connection is working!"
+            });
+        },
+        GetProduct: getProduct,
+        CreateProduct: createProduct,
+        GetProducts: getProducts,
+        DeleteProduct: deleteProduct,
+        UpdateProduct: updateProduct,
+        GetIngredient: getIngredient,
+        CreateIngredient: createIngredient,
+        DeleteIngredient: deleteIngredient,
+        UpdateIngredient: updateIngredient,
+        GetIngredients: getIngredients,
     });
     return server;
 }
