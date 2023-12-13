@@ -3,7 +3,7 @@ const config = {
     connection: {
         host: 'localhost',
         user: 'root',
-        password: 'root',
+        password: 'root1234',
         database: 'kisdb',
         port: '3306',
     }

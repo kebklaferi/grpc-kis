@@ -3,8 +3,8 @@ const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const {
     getProduct, createProduct, deleteProduct, updateProduct, getProducts,
-    getIngredient, createIngredient, deleteIngredient, updateIngredient, getIngredients
-} = require("/service-impl");
+    getIngredient, createIngredient, deleteIngredient, updateIngredient, getIngredients, getProductCategory, getProductBrand
+} = require("./service-impl");
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     keepCase: true,
@@ -36,6 +36,8 @@ function getServer() {
         DeleteIngredient: deleteIngredient,
         UpdateIngredient: updateIngredient,
         GetIngredients: getIngredients,
+        GetProductBrand: getProductBrand,
+        GetProductCategory: getProductCategory
     });
     return server;
 }

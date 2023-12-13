@@ -4,17 +4,19 @@ import "google/protobuf/empty.proto";
 
 service ProductService {
   rpc TestConnection (SimpleMessage) returns (SimpleMessage) {};
+  rpc GetProductBrand (RequestById) returns (BrandResponse) {};
+  rpc GetProductCategory (RequestById) returns (CategoryResponse) {};
 
   rpc GetProduct(RequestById) returns (Product) {};
-  rpc CreateProduct(stream Product) returns (StatusMessage) {};
-  rpc GetUsers (google.protobuf.Empty) returns (stream Product) {};
+  rpc CreateProduct(ProductRequest) returns (StatusMessage) {};
+  rpc GetProducts (google.protobuf.Empty) returns (stream Product) {};
   rpc DeleteProduct(RequestById) returns (StatusMessage) {};
-  rpc UpdateProduct (Product) returns (Product) {};
+  rpc UpdateProduct (Product) returns (StatusMessage) {};
 
   rpc GetIngredient(RequestById) returns (Ingredient){};
-  rpc CreateIngredient(stream Ingredient) returns (StatusMessage) {};
+  rpc CreateIngredient(IngredientRequest) returns (StatusMessage) {};
   rpc DeleteIngredient(RequestById) returns (StatusMessage) {};
-  rpc UpdateIngredient(Ingredient) returns (Ingredient) {};
+  rpc UpdateIngredient(Ingredient) returns (StatusMessage) {};
   rpc GetIngredients (google.protobuf.Empty) returns (stream Ingredient) {};
 }
 message SimpleMessage {
@@ -59,3 +61,16 @@ message Product {
   string brand = 4;
   string category = 5;
 }
+
+message BrandResponse {
+  string id = 1;
+  string alias = 2;
+  string title = 3;
+}
+
+message CategoryResponse {
+  string id = 1;
+  string alias = 2;
+  string title = 3;
+}
+
