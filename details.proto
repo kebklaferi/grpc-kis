@@ -43,8 +43,8 @@ message Ingredient {
 message ProductRequest {
   string alias = 1;
   string title = 2;
-  string brand = 3;
-  string category = 4;
+  int32 brand = 3;
+  int32 category = 4;
 }
 message IngredientRequest {
   string title = 1;
@@ -58,18 +58,18 @@ message Product {
   int32 id = 1;
   string alias = 2;
   string title = 3;
-  string brand = 4;
-  string category = 5;
+  int32 brand = 4;
+  int32 category = 5;
 }
 
 message BrandResponse {
-  string id = 1;
+  int32 id = 1;
   string alias = 2;
   string title = 3;
 }
 
 message CategoryResponse {
-  string id = 1;
+  int32 id = 1;
   string alias = 2;
   string title = 3;
 }
